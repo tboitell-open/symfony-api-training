@@ -54,10 +54,10 @@ class Greenspace
     /**
      * @ORM\Column(type="integer")
      */
-    private $adresse_numero;
+    private $adresse_numero = 0;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $adresse_typevoie;
 
@@ -74,15 +74,15 @@ class Greenspace
     /**
      * @ORM\Column(type="integer")
      */
-    private $nb_entities;
+    private $nb_entites;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $id_atelier_surveillance;
+    private $id_atelier_surveillance = 0;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $ouvert_ferme;
 
@@ -92,7 +92,7 @@ class Greenspace
     private $competence;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $adresse_libellevoie;
 
@@ -114,7 +114,7 @@ class Greenspace
     /**
      * @ORM\Column(type="integer")
      */
-    private $id_atelier_horticole;
+    private $id_atelier_horticole = 0;
 
     /**
      * @ORM\Column(type="integer", length=24)
@@ -122,34 +122,34 @@ class Greenspace
     private $ida3d_enb;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $id_eqpt;
 
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="string", length=10, nullable=true)
      */
     private $site_villes;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=64, nullable=true)
      */
     private $date_debut_validite;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=64, nullable=true)
      */
     private $date_fin_validite;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=64, nullable=true)
      */
     private $poly_area;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $surface_horticole;
+    private $surface_horticole = 0;
 
     /**
      * @ORM\Column(type="integer")
@@ -157,7 +157,7 @@ class Greenspace
     private $surface_totale_reelle;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $perimeter;
 
@@ -298,14 +298,14 @@ class Greenspace
         return $this;
     }
 
-    public function getNbEntities(): ?int
+    public function getNbEntites(): ?int
     {
-        return $this->nb_entities;
+        return $this->nb_entites;
     }
 
-    public function setNbEntities(int $nb_entities): self
+    public function setNbEntites(int $nb_entites): self
     {
-        $this->nb_entities = $nb_entities;
+        $this->nb_entites = $nb_entites;
 
         return $this;
     }
