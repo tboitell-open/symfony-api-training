@@ -11,7 +11,6 @@ class Fixtures extends Fixture
 	public function load(ObjectManager $manager)
 	{
 		$geodata = json_decode(file_get_contents(__DIR__ . '/../../../vendor/espaces_verts.json'));
-		$i = 0;
 		foreach ($geodata as $entrie)
 		{
 			$greenspace = new Greenspace();
@@ -26,13 +25,8 @@ class Fixtures extends Fixture
 					$greenspace->$callback_name($data);
 			}
 			$manager->persist($greenspace);
-			if ($i === 0)
-			{
-				print_r($greenspace);	
-				$manager->flush();
-				$manager->clear();
-			}
-			$i++;
 		}
+		$manager->flush();
+		$manager->clear();
 	}
 }
