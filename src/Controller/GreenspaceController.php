@@ -18,12 +18,25 @@ use App\Entity\Greenspace;
  */
 class GreenspaceController extends AbstractFOSRestController
 {
+
+     /**
+     * @Rest\Get("/greenspace", name="greenspace_api", requirements={"_format"="json"})
+     *
+     * @return Response
+     */
+    public function getAll()
+    {
+	$repository = $this->getDoctrine()->getRepository(Greenspace::class);
+	$greenspace = $repository->findall();
+	return $this->handleView($this->view($greenspace));
+    }
+
     /**
      * @Rest\Get("/greenspace/{id<\d+>}", name="greenspace_api_by_id", requirements={"_format"="json"})
      *
      * @return Response
      */
-    public function getGreenspace($id)
+    public function get($id)
     {
 	$repository = $this->getDoctrine()->getRepository(Greenspace::class);
 	$greenspace = $repository->findOneby(['nsq_espace_vert' => $id]);
@@ -33,23 +46,11 @@ class GreenspaceController extends AbstractFOSRestController
     }
 
      /**
-     * @Rest\Get("/greenspace", name="greenspace_api", requirements={"_format"="json"})
-     *
-     * @return Response
-     */
-    public function getAllGreenspace()
-    {
-	$repository = $this->getDoctrine()->getRepository(Greenspace::class);
-	$greenspace = $repository->findall();
-	return $this->handleView($this->view($greenspace));
-    } 
-
-     /**
      * @Rest\Post("/greenspace/create", name="greenspace_api_create", requirements={"_format"="json"})
      *
      * @return Response
      */
-    public function createGreenspace(Request $request)
+    public function create(Request $request)
     {
 	$repository = $this->getDoctrine()->getRepository(Greenspace::class);
 	$greenspace = new Greenspace();
@@ -80,11 +81,11 @@ class GreenspaceController extends AbstractFOSRestController
     } 
 
      /**
-     * @Rest\Delete("/greenspace/delete/{:id<\d+>}", name="greenspace_api", requirements={"_format"="json"})
+     * @Rest\Delete("/greenspace/delete/{:id<\d+>}", name="greenspace_api_delete", requirements={"_format"="json"})
      *
      * @return Response
      */
-    public function deleteGreenspace($id)
+    public function delete($id)
     {
 	$repository = $this->getDoctrine()->getRepository(Greenspace::class);
 	$greenspace = $repository->findOneby(['nsq_espace_vert' => $id]);
