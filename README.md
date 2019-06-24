@@ -17,3 +17,9 @@ You can stop the database with:
 
 Finally, you can remove the database:
 `docker remove mysql`
+
+# Todolist
+- Create the post and delete function on the API Controller.
+- Create a service to manage your entities relations with Doctrine.
+- Look about OAuth authentification and JWT tokens.
+- Write tests on postman.
