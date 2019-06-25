@@ -1,4 +1,6 @@
 <?php 
+namespace App\Service;
+
 use Symfony\Component\Serializer\SerializerInterface;
 use App\Entity\Greenspace;
 
@@ -41,7 +43,7 @@ final class GreenspaceService
 					$i++;
 				}
 				$property_name = strtolower($property_name);
-				if (array_key_exists($property_name, $fields)
+				if (array_key_exists($property_name, $fields))
 					$greenspace->$method_name($fields[$property_name]);
 			}
 		}

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\API;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,6 +11,7 @@ use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\View\View;
 use App\Entity\Greenspace;
+use App\Service\GreenspaceService;
 
 /**
  * Greenspace controller.
@@ -20,7 +21,7 @@ class GreenspaceController extends AbstractFOSRestController
 {
 
      /**
-     * @Rest\Get("/greenspace", name="greenspace_api", requirements={"_format"="json"})
+     * @Rest\Get("/greenspace", name="greenspace", requirements={"_format"="json"})
      *
      * @return Response
      */
@@ -32,7 +33,7 @@ class GreenspaceController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\Get("/greenspace/{id<\d+>}", name="greenspace_api_by_id", requirements={"_format"="json"})
+     * @Rest\Get("/greenspace/{id<\d+>}", name="greenspace_by_id", requirements={"_format"="json"})
      *
      * @return Response
      */
@@ -46,7 +47,7 @@ class GreenspaceController extends AbstractFOSRestController
     }
 
      /**
-     * @Rest\Post("/greenspace/create", name="greenspace_api_create", requirements={"_format"="json"})
+     * @Rest\Post("/greenspace/create", name="greenspace_create", requirements={"_format"="json"})
      *
      * @return Response
      */
@@ -81,7 +82,7 @@ class GreenspaceController extends AbstractFOSRestController
     } 
 
      /**
-     * @Rest\Delete("/greenspace/delete/{:id<\d+>}", name="greenspace_api_delete", requirements={"_format"="json"})
+     * @Rest\Delete("/greenspace/delete/{:id<\d+>}", name="greenspace_delete", requirements={"_format"="json"})
      *
      * @return Response
      */

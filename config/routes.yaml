@@ -2,3 +2,6 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 #
+login_check:
+        path: /auth/login_check
+        methods:  [POST]
