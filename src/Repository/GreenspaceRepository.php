@@ -19,6 +19,11 @@ class GreenspaceRepository extends ServiceEntityRepository
         parent::__construct($registry, Greenspace::class);
     }
 
+    public function findAllQueryBuilder()
+    {
+	    return $this->createQueryBuilder('greenspace');
+    }
+
     // /**
     //  * @return Greenspace[] Returns an array of Greenspace objects
     //  */

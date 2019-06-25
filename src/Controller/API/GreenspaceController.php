@@ -10,6 +10,8 @@ use Symfony\Component\Serializer\SerializerInterface;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\View\View;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
 use App\Entity\Greenspace;
 use App\Service\GreenspaceService;
 
@@ -25,11 +27,34 @@ class GreenspaceController extends AbstractFOSRestController
      *
      * @return Response
      */
-    public function getAll()
+    public function getAll(Request $request)
     {
 	$repository = $this->getDoctrine()->getRepository(Greenspace::class);
-	$greenspace = $repository->findall();
-	return $this->handleView($this->view($greenspace));
+	$greenspace = 0;
+	if ($request->query->has('page'))
+	{
+		$page = $request->query->get('page', 1);
+		$query_builder = $repository->findAllQueryBuilder();
+		$adapter = new DoctrineORMAdapter($query_builder);
+		$pagerfanta = new Pagerfanta($adapter);
+		$pagerfanta->setMaxPerPage(10);
+		$pagerfanta->setCurrentPage($page);
+		$greenspace = [];
+		foreach($pagerfanta->getCurrentPageResults() as $entry)
+		{
+			$greenspace[] = $entry;
+		}
+		return $this->handleView($this->view(
+			['total' => $pagerfanta->getNBResults(), 
+			'count' => count($greenspace),
+			'greenspaces' => $greenspace
+		]));
+	}
+	else
+	{
+		$greenspace = $repository->findall();
+		return $this->handleView($this->view($greenspace));
+	}
     }
 
     /**
