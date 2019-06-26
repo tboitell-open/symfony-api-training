@@ -18,7 +18,7 @@
 ###< symfony/web-server-bundle ###
 
 ### vim
-.swp
+*.swp
 
 ###> lexik/jwt-authentication-bundle ###
 /config/jwt/*.pem
