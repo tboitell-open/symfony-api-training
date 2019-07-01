@@ -108,9 +108,6 @@
     "egulias/email-validator": {
         "version": "2.1.8"
     },
-    "facebook/webdriver": {
-        "version": "1.7.1"
-    },
     "fig/link-util": {
         "version": "1.0.0"
     },
@@ -125,6 +122,9 @@
         "files": [
             "config/packages/fos_rest.yaml"
         ]
+    },
+    "harmbandstra/swagger-ui-bundle": {
+        "version": "4.1.0"
     },
     "hoa/compiler": {
         "version": "3.17.08.08"
@@ -209,6 +209,18 @@
     "namshi/jose": {
         "version": "7.2.3"
     },
+    "nelmio/cors-bundle": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.5",
+            "ref": "f0436fc35fca88eada758311f8de43bfb61f1980"
+        },
+        "files": [
+            "config/packages/nelmio_cors.yaml"
+        ]
+    },
     "nikic/php-parser": {
         "version": "v4.2.2"
     },
@@ -250,6 +262,9 @@
         "files": [
             "config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "swagger-api/swagger-ui": {
+        "version": "v3.22.3"
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.2.1"
@@ -416,9 +431,6 @@
     },
     "symfony/orm-pack": {
         "version": "v1.0.6"
-    },
-    "symfony/panther": {
-        "version": "v0.4.1"
     },
     "symfony/phpunit-bridge": {
         "version": "4.3",

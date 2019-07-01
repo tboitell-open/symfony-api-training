@@ -13,7 +13,6 @@ use FOS\RestBundle\View\View;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 use App\Entity\Greenspace;
-use App\Service\GreenspaceService;
 
 /**
  * Greenspace controller.
@@ -31,6 +30,8 @@ class GreenspaceController extends AbstractFOSRestController
     {
 	$repository = $this->getDoctrine()->getRepository(Greenspace::class);
 	$greenspace = 0;
+	$field = 0;
+	$sort_order = "sort-asc";
 	if ($request->query->has('page'))
 	{
 		$page = $request->query->get('page', 1);
@@ -53,8 +54,12 @@ class GreenspaceController extends AbstractFOSRestController
 	else
 	{
 		$greenspace = $repository->findall();
-		return $this->handleView($this->view($greenspace));
 	}
+	if ($request->query->has('sort_by'))
+	{
+		$field = $request->query->get('sort_by');
+	}
+	return $this->handleView($this->view($greenspace));
     }
 
     /**
@@ -101,8 +106,8 @@ class GreenspaceController extends AbstractFOSRestController
 		}
 	}
 	// Need to call a validator here.	
-	// $repository->persist($greenspace);
-	// $repository->flush($greenspace);
+	$repository->persist($greenspace);
+	$repository->flush($greenspace);
 	return $this->handleView($this->view($greenspace, Response::HTTP_CREATED));
     } 
 

@@ -32,5 +32,4 @@ And to send your API Request add your token on your HTTP Request:
 # Todolist
 - Create the post and delete function on the API Controller.
 - Create a service to manage your entities relations with Doctrine.
-- Look about OAuth authentification and JWT tokens.
 - Write tests on postman.

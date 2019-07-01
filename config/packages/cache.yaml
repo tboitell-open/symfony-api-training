@@ -17,3 +17,12 @@ framework:
         # Namespaced pools use the above "app" backend by default
         #pools:
             #my.dedicated.cache: ~
+            #
+doctrine_cache:
+    providers:
+        my_apc_metadata_cache:
+            type: apc
+            namespace: metadata_cache_ns
+        my_apc_query_cache:
+            namespace: query_cache_ns
+            apc: ~
